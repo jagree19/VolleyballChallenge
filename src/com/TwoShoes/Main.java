@@ -104,6 +104,11 @@ public class Main {
 	 */
 	public static ArrayList<Player> getRoster(String fileName) throws IOException {
 		
+		//empties out playerSet if another file had been read in previously.
+		if(playerSet.size() != 0) {
+			playerSet = new ArrayList<Player>();
+		}
+		
 		Scanner inFile = new Scanner(new File(fileName));
 		while(inFile.hasNext()) {
 			Player player = new Player();
