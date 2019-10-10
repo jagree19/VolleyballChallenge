@@ -29,7 +29,9 @@ public class Main {
 		System.out.println("2: Print the opened roster.");
 		System.out.println("3: Team based on attack");
 		System.out.println("4: Team based on block");
-		System.out.println("5: Quit");
+		System.out.println("5: List top 3 attackers");
+		System.out.println("6: List top 3 blockers");
+		System.out.println("7: Quit");
 		
 		Scanner scan = new Scanner(System.in);
 		Scanner file = new Scanner(System.in);
@@ -67,6 +69,16 @@ public class Main {
 				System.out.println("Teams based on block stats");
 				System.out.println("");
 				MakeBlockTeams();
+				Menu();
+				break;
+			case 5:
+				isRosterOpen();
+				topAttackers();
+				Menu();
+				break;
+			case 6:
+				isRosterOpen();
+				topBlockers();
 				Menu();
 				break;
 			default:
@@ -257,5 +269,33 @@ public class Main {
 		if(team4.getPlayer(0) != null){
 			System.out.println(team4.toString());
 		}
+	}
+	
+	public static void topAttackers() {
+		//TODO
+		// Sorts the players by their attack stats in descending order.
+		Collections.sort(playerSet, new Comparator<Player>() {
+			@Override
+			public int compare(Player p1, Player p2) {
+				return p2.getAttackStat().compareTo(p1.getAttackStat());
+			}
+		});
+		System.out.println(playerSet.get(0).toString());
+		System.out.println(playerSet.get(1).toString());
+		System.out.println(playerSet.get(2).toString());
+	}
+	
+	public static void topBlockers() {
+		//TODO
+		// Sorts the players by their block stats in descending order.
+		Collections.sort(playerSet, new Comparator<Player>() {
+			@Override
+			public int compare(Player p1, Player p2) {
+				return p2.getBlockStat().compareTo(p1.getBlockStat());
+			}
+		});
+		System.out.println(playerSet.get(0).toString());
+		System.out.println(playerSet.get(1).toString());
+		System.out.println(playerSet.get(2).toString());
 	}
 }
